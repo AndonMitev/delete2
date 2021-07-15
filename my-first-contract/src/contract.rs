@@ -5,7 +5,6 @@ use cosmwasm_std::{
 };
 
 use hex::decode;
-use log::info;
 use sha2::{Digest, Sha256};
 
 use crate::msg::{HandleMsg, InitMsg};
@@ -63,7 +62,7 @@ pub fn handle<S: Storage, A: Api, Q: Querier>(
 
 pub fn try_claim<S: Storage, A: Api, Q: Querier>(
     deps: &mut Extern<S, A, Q>,
-    env: Env,
+    _: Env,
     secret: String,
 ) -> StdResult<HandleResponse> {
     let state = config_read(&deps.storage).load()?;
@@ -88,7 +87,7 @@ pub fn try_claim<S: Storage, A: Api, Q: Querier>(
 
 pub fn try_refund<S: Storage, A: Api, Q: Querier>(
     deps: &mut Extern<S, A, Q>,
-    env: Env,
+    _: Env,
 ) -> StdResult<HandleResponse> {
     let state = config_read(&deps.storage).load()?;
 
@@ -116,7 +115,7 @@ pub fn query<S: Storage, A: Api, Q: Querier>(
     }
 }
 
-fn query_count<S: Storage, A: Api, Q: Querier>(deps: &Extern<S, A, Q>) -> StdResult<CountResponse> {
+fn query_count<S: Storage, A: Api, Q: Querier>(_: &Extern<S, A, Q>) -> StdResult<CountResponse> {
     // let state = config_read(&deps.storage).load()?;
     Ok(CountResponse { count: 1 })
 }
