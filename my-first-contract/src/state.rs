@@ -13,7 +13,7 @@ pub static BALANCE_KEY: &[u8] = b"balance";
 pub struct State {
     pub buyer: CanonicalAddr,
     pub seller: CanonicalAddr,
-    pub expiration: u128,
+    pub expiration: u64,
     pub value: Uint128,
     pub secret_hash: String,
 }

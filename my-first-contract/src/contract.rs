@@ -1,4 +1,6 @@
 use crate::msg::{CountResponse, QueryMsg};
+use cosmwasm_std::HumanAddr;
+use cosmwasm_std::Uint128;
 use cosmwasm_std::{
     to_binary, Api, Binary, Env, Extern, HandleResponse, InitResponse, Querier, StdError,
     StdResult, Storage,
@@ -13,39 +15,11 @@ use crate::state::{balance_get, balance_set, config, config_read, State};
 use std::time::{SystemTime, UNIX_EPOCH};
 
 pub fn init<S: Storage, A: Api, Q: Querier>(
-    deps: &mut Extern<S, A, Q>,
-    env: Env,
-    msg: InitMsg,
+    _: &mut Extern<S, A, Q>,
+    __: Env,
+    ___: InitMsg,
 ) -> StdResult<InitResponse> {
-    println!("called");
-    let state = State {
-        buyer: deps.api.canonical_address(&msg.buyer)?,
-        seller: deps.api.canonical_address(&msg.seller)?,
-        expiration: msg.expiration,
-        value: msg.value,
-        secret_hash: msg.secret_hash,
-    };
-
-    balance_set(
-        &mut deps.storage,
-        &deps.api.canonical_address(&env.contract.address)?,
-        &msg.value,
-    )?;
-
-    let balance = balance_get(
-        &deps.storage,
-        &deps.api.canonical_address(&env.contract.address)?,
-    );
-
-    println!("balance {}", balance);
-    println!("buyer {}", state.buyer);
-    println!("seller {}", state.seller);
-    println!("expiration {}", state.expiration);
-    println!("value {}", state.value);
-    println!("secret_hash {}", state.secret_hash);
-
-    config(&mut deps.storage).save(&state)?;
-
+    println!("inited");
     Ok(InitResponse::default())
 }
 
@@ -55,9 +29,62 @@ pub fn handle<S: Storage, A: Api, Q: Querier>(
     msg: HandleMsg,
 ) -> StdResult<HandleResponse> {
     match msg {
+        HandleMsg::Init {
+            buyer,
+            seller,
+            expiration,
+            value,
+            secret_hash,
+        } => try_init(deps, env, buyer, seller, expiration, value, secret_hash),
         HandleMsg::Claim { secret } => try_claim(deps, env, secret),
         HandleMsg::Refund {} => try_refund(deps, env),
     }
+}
+
+pub fn try_init<S: Storage, A: Api, Q: Querier>(
+    deps: &mut Extern<S, A, Q>,
+    env: Env,
+    buyer: HumanAddr,
+    seller: HumanAddr,
+    expiration: u64,
+    value: Uint128,
+    secret_hash: String,
+) -> StdResult<HandleResponse> {
+    println!("called");
+    let state = State {
+        buyer: deps.api.canonical_address(&buyer)?,
+        seller: deps.api.canonical_address(&seller)?,
+        expiration: expiration,
+        value: value,
+        secret_hash: secret_hash,
+    };
+
+    println!("buyer {}", state.buyer);
+    println!("seller {}", state.seller);
+    println!("expiration {}", state.expiration);
+    println!("value {}", state.value);
+    println!("secret_hash {}", state.secret_hash);
+
+    balance_set(
+        &mut deps.storage,
+        &deps.api.canonical_address(&env.contract.address)?,
+        &value,
+    )?;
+
+    println!("balance setter");
+
+    let balance = balance_get(
+        &deps.storage,
+        &deps.api.canonical_address(&env.contract.address)?,
+    );
+
+    println!("balance {}", balance);
+
+    config(&mut deps.storage).save(&state)?;
+
+    println!("saved");
+
+    Ok(HandleResponse::default())
 }
 
 pub fn try_claim<S: Storage, A: Api, Q: Querier>(

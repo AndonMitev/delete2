@@ -14,7 +14,16 @@ pub struct InitMsg {
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
 pub enum HandleMsg {
-    Claim { secret: String },
+    Init {
+        buyer: HumanAddr,
+        seller: HumanAddr,
+        expiration: u64,
+        value: Uint128,
+        secret_hash: String,
+    },
+    Claim {
+        secret: String,
+    },
     Refund {},
 }
 
