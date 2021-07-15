@@ -1,0 +1,8 @@
+/Users/andonmitev/Desktop/delete2/my-first-contract/target/rls/debug/deps/solana_config_program-53d8e0df303a8546.rmeta: /Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/solana-config-program-1.7.1/src/lib.rs /Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/solana-config-program-1.7.1/src/config_instruction.rs /Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/solana-config-program-1.7.1/src/config_processor.rs /Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/solana-config-program-1.7.1/src/date_instruction.rs
+
+/Users/andonmitev/Desktop/delete2/my-first-contract/target/rls/debug/deps/solana_config_program-53d8e0df303a8546.d: /Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/solana-config-program-1.7.1/src/lib.rs /Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/solana-config-program-1.7.1/src/config_instruction.rs /Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/solana-config-program-1.7.1/src/config_processor.rs /Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/solana-config-program-1.7.1/src/date_instruction.rs
+
+/Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/solana-config-program-1.7.1/src/lib.rs:
+/Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/solana-config-program-1.7.1/src/config_instruction.rs:
+/Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/solana-config-program-1.7.1/src/config_processor.rs:
+/Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/solana-config-program-1.7.1/src/date_instruction.rs:

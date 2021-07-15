@@ -1,0 +1,12 @@
+/Users/andonmitev/Desktop/delete2/my-first-contract/target/rls/debug/deps/tempfile-637354113a04c7ce.rmeta: /Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/tempfile-3.2.0/src/lib.rs /Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/tempfile-3.2.0/src/dir.rs /Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/tempfile-3.2.0/src/error.rs /Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/tempfile-3.2.0/src/file/mod.rs /Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/tempfile-3.2.0/src/file/imp/mod.rs /Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/tempfile-3.2.0/src/spooled.rs /Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/tempfile-3.2.0/src/util.rs /Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/tempfile-3.2.0/src/file/imp/unix.rs
+
+/Users/andonmitev/Desktop/delete2/my-first-contract/target/rls/debug/deps/tempfile-637354113a04c7ce.d: /Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/tempfile-3.2.0/src/lib.rs /Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/tempfile-3.2.0/src/dir.rs /Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/tempfile-3.2.0/src/error.rs /Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/tempfile-3.2.0/src/file/mod.rs /Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/tempfile-3.2.0/src/file/imp/mod.rs /Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/tempfile-3.2.0/src/spooled.rs /Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/tempfile-3.2.0/src/util.rs /Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/tempfile-3.2.0/src/file/imp/unix.rs
+
+/Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/tempfile-3.2.0/src/lib.rs:
+/Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/tempfile-3.2.0/src/dir.rs:
+/Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/tempfile-3.2.0/src/error.rs:
+/Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/tempfile-3.2.0/src/file/mod.rs:
+/Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/tempfile-3.2.0/src/file/imp/mod.rs:
+/Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/tempfile-3.2.0/src/spooled.rs:
+/Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/tempfile-3.2.0/src/util.rs:
+/Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/tempfile-3.2.0/src/file/imp/unix.rs:

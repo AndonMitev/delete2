@@ -1,0 +1,11 @@
+/Users/andonmitev/Desktop/delete2/my-first-contract/target/rls/debug/deps/futures_task-9b95d674b4dcf804.rmeta: /Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-task-0.3.15/src/lib.rs /Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-task-0.3.15/src/spawn.rs /Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-task-0.3.15/src/future_obj.rs /Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-task-0.3.15/src/noop_waker.rs /Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-task-0.3.15/src/arc_wake.rs /Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-task-0.3.15/src/waker.rs /Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-task-0.3.15/src/waker_ref.rs
+
+/Users/andonmitev/Desktop/delete2/my-first-contract/target/rls/debug/deps/futures_task-9b95d674b4dcf804.d: /Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-task-0.3.15/src/lib.rs /Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-task-0.3.15/src/spawn.rs /Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-task-0.3.15/src/future_obj.rs /Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-task-0.3.15/src/noop_waker.rs /Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-task-0.3.15/src/arc_wake.rs /Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-task-0.3.15/src/waker.rs /Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-task-0.3.15/src/waker_ref.rs
+
+/Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-task-0.3.15/src/lib.rs:
+/Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-task-0.3.15/src/spawn.rs:
+/Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-task-0.3.15/src/future_obj.rs:
+/Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-task-0.3.15/src/noop_waker.rs:
+/Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-task-0.3.15/src/arc_wake.rs:
+/Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-task-0.3.15/src/waker.rs:
+/Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-task-0.3.15/src/waker_ref.rs:

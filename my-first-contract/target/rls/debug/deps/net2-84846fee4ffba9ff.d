@@ -1,0 +1,13 @@
+/Users/andonmitev/Desktop/delete2/my-first-contract/target/rls/debug/deps/net2-84846fee4ffba9ff.rmeta: /Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/net2-0.2.37/src/lib.rs /Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/net2-0.2.37/src/tcp.rs /Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/net2-0.2.37/src/udp.rs /Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/net2-0.2.37/src/socket.rs /Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/net2-0.2.37/src/ext.rs /Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/net2-0.2.37/src/utils.rs /Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/net2-0.2.37/src/sys/unix/mod.rs /Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/net2-0.2.37/src/sys/unix/impls.rs /Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/net2-0.2.37/src/unix.rs
+
+/Users/andonmitev/Desktop/delete2/my-first-contract/target/rls/debug/deps/net2-84846fee4ffba9ff.d: /Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/net2-0.2.37/src/lib.rs /Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/net2-0.2.37/src/tcp.rs /Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/net2-0.2.37/src/udp.rs /Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/net2-0.2.37/src/socket.rs /Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/net2-0.2.37/src/ext.rs /Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/net2-0.2.37/src/utils.rs /Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/net2-0.2.37/src/sys/unix/mod.rs /Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/net2-0.2.37/src/sys/unix/impls.rs /Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/net2-0.2.37/src/unix.rs
+
+/Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/net2-0.2.37/src/lib.rs:
+/Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/net2-0.2.37/src/tcp.rs:
+/Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/net2-0.2.37/src/udp.rs:
+/Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/net2-0.2.37/src/socket.rs:
+/Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/net2-0.2.37/src/ext.rs:
+/Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/net2-0.2.37/src/utils.rs:
+/Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/net2-0.2.37/src/sys/unix/mod.rs:
+/Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/net2-0.2.37/src/sys/unix/impls.rs:
+/Users/andonmitev/.cargo/registry/src/github.com-1ecc6299db9ec823/net2-0.2.37/src/unix.rs:

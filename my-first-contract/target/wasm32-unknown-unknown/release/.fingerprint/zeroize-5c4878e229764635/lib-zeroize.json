@@ -1,0 +1,1 @@
+{"rustc":2654464967411697123,"features":"[\"alloc\"]","target":3625447477678287948,"profile":16251022726492221774,"path":12240364390750260571,"deps":[],"local":[{"CheckDepInfo":{"dep_info":"wasm32-unknown-unknown/release/.fingerprint/zeroize-5c4878e229764635/dep-lib-zeroize"}}],"rustflags":[],"metadata":4317945585732210332,"config":0,"compile_kind":8104632896995515128}
