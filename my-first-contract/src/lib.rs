@@ -26,4 +26,12 @@ mod wasm {
             msg_ptr,
         )
     }
+
+    #[no_mangle]
+    extern "C" fn query(msg_ptr: u32) -> u32 {
+        do_query(
+            &contract::query::<ExternalStorage, ExternalApi, ExternalQuerier>,
+            msg_ptr,
+        )
+    }
 }
