@@ -1,3 +1,4 @@
+use crate::msg::{CountResponse, QueryMsg};
 use cosmwasm_std::{
     to_binary, Api, Binary, Env, Extern, HandleResponse, InitResponse, Querier, StdError,
     StdResult, Storage,
@@ -104,4 +105,18 @@ pub fn try_refund<S: Storage, A: Api, Q: Querier>(
     // where this value gonna be locked !?
 
     Ok(HandleResponse::default())
+}
+
+pub fn query<S: Storage, A: Api, Q: Querier>(
+    deps: &Extern<S, A, Q>,
+    msg: QueryMsg,
+) -> StdResult<Binary> {
+    match msg {
+        QueryMsg::GetCount {} => to_binary(&query_count(deps)?),
+    }
+}
+
+fn query_count<S: Storage, A: Api, Q: Querier>(deps: &Extern<S, A, Q>) -> StdResult<CountResponse> {
+    // let state = config_read(&deps.storage).load()?;
+    Ok(CountResponse { count: 1 })
 }
