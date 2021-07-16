@@ -18,17 +18,21 @@ pub fn init<S: Storage, A: Api, Q: Querier>(
 ) -> StdResult<InitResponse> {
     let mut logs: Vec<LogAttribute> = vec![];
     logs.push(log("test", "testawe brat"));
-    let buyer = deps.api.canonical_address(&msg.buyer)?;
-    let seller = deps.api.canonical_address(&msg.seller)?;
+    let state = State {
+        buyer: deps.api.canonical_address(&msg.buyer)?,
+        seller: deps.api.canonical_address(&msg.seller)?,
+        expiration: msg.expiration,
+        value: msg.value,
+        secret_hash: msg.secret_hash,
+    };
 
-    config(&mut deps.storage).update(|mut state| {
-        state.buyer = buyer;
-        state.seller = seller;
-        state.expiration = msg.expiration;
-        state.value = msg.value;
-        state.secret_hash = msg.secret_hash;
-        Ok(state)
-    })?;
+    config(&mut deps.storage).save(&state)?;
+
+    // logs.push(log("state buyer", state.buyer));
+    // logs.push(log("state seller", state.seller));
+    // logs.push(log("state expiration", state.expiration));
+    // logs.push(log("state value", state.value));
+    // logs.push(log("state secret", state.secret_hash));
 
     let response = InitResponse {
         messages: vec![],
