@@ -1,13 +1,10 @@
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 
-use cosmwasm_std::{CanonicalAddr, StdResult, Storage};
-use cosmwasm_storage::{
-    singleton, singleton_read, Bucket, ReadonlyBucket, ReadonlySingleton, Singleton,
-};
+use cosmwasm_std::{CanonicalAddr, Storage};
+use cosmwasm_storage::{singleton, singleton_read, ReadonlySingleton, Singleton};
 
 pub static CONFIG_KEY: &[u8] = b"config";
-pub static BALANCE_KEY: &[u8] = b"balance";
 
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct State {

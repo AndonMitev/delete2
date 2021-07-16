@@ -1,23 +1,25 @@
 use cosmwasm_std::Coin;
 use cosmwasm_std::CosmosMsg;
 use cosmwasm_std::{
-    log, to_binary, Api, BankMsg, Binary, Env, Extern, HandleResponse, HumanAddr, InitResponse,
-    LogAttribute, Querier, StdError, StdResult, Storage,
+    Api, BankMsg, Binary, Env, Extern, HandleResponse, HumanAddr, InitResponse, Querier, StdError,
+    StdResult, Storage,
 };
 
 use hex::decode;
 use sha2::{Digest, Sha256};
 
-use crate::msg::{CountResponse, HandleMsg, InitMsg, QueryMsg};
+use crate::msg::{HandleMsg, InitMsg, QueryMsg};
 use crate::state::{config, config_read, State};
-
-use std::time::{SystemTime, UNIX_EPOCH};
 
 pub fn init<S: Storage, A: Api, Q: Querier>(
     deps: &mut Extern<S, A, Q>,
     _: Env,
     msg: InitMsg,
 ) -> StdResult<InitResponse> {
+    if msg.secret_hash.len() < 64 {
+        return Err(StdError::generic_err("Invalid secret hash length"));
+    }
+
     let state = State {
         buyer: deps.api.canonical_address(&msg.buyer)?,
         seller: deps.api.canonical_address(&msg.seller)?,
@@ -47,7 +49,6 @@ pub fn try_claim<S: Storage, A: Api, Q: Querier>(
     env: Env,
     secret: String,
 ) -> StdResult<HandleResponse> {
-    let mut logs: Vec<LogAttribute> = vec![];
     let state = config_read(&deps.storage).load()?;
 
     let mut hasher = Sha256::default();
@@ -80,14 +81,7 @@ pub fn try_refund<S: Storage, A: Api, Q: Querier>(
     deps: &mut Extern<S, A, Q>,
     env: Env,
 ) -> StdResult<HandleResponse> {
-    let mut logs: Vec<LogAttribute> = vec![];
-
     let state = config_read(&deps.storage).load()?;
-
-    let current_timestamp = env.block.time;
-
-    logs.push(log("expiration", state.expiration));
-    logs.push(log("current_timestamp", current_timestamp));
 
     if env.block.time < (state.expiration as u64) {
         return Err(StdError::generic_err("Swap is not expired"));
@@ -109,26 +103,10 @@ pub fn try_refund<S: Storage, A: Api, Q: Querier>(
 }
 
 pub fn query<S: Storage, A: Api, Q: Querier>(
-    deps: &Extern<S, A, Q>,
+    _: &Extern<S, A, Q>,
     msg: QueryMsg,
 ) -> StdResult<Binary> {
     match msg {
-        QueryMsg::GetCount {} => to_binary(&query_count(deps)?),
+        _ => return Err(StdError::generic_err("Query not implemented")),
     }
-}
-
-fn query_count<S: Storage, A: Api, Q: Querier>(deps: &Extern<S, A, Q>) -> StdResult<CountResponse> {
-    let mut logs: Vec<LogAttribute> = vec![];
-    logs.push(log("test", "start query"));
-    let state = config_read(&deps.storage).load()?;
-    logs.push(log("test", "query"));
-    logs.push(log("state buyer", &state.buyer));
-    logs.push(log("parsed buyer", deps.api.human_address(&state.buyer)?));
-
-    let buyer = deps.api.human_address(&state.buyer)?;
-    let seller = deps.api.human_address(&state.seller)?;
-    Ok(CountResponse {
-        buyer: buyer,
-        seller: seller,
-    })
 }
