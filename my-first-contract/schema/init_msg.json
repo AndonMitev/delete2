@@ -3,12 +3,36 @@
   "title": "InitMsg",
   "type": "object",
   "required": [
-    "count"
+    "buyer",
+    "expiration",
+    "secret_hash",
+    "seller",
+    "value"
   ],
   "properties": {
-    "count": {
+    "buyer": {
+      "$ref": "#/definitions/HumanAddr"
+    },
+    "expiration": {
       "type": "integer",
-      "format": "int32"
+      "format": "uint64",
+      "minimum": 0.0
+    },
+    "secret_hash": {
+      "type": "string"
+    },
+    "seller": {
+      "$ref": "#/definitions/HumanAddr"
+    },
+    "value": {
+      "type": "integer",
+      "format": "uint64",
+      "minimum": 0.0
+    }
+  },
+  "definitions": {
+    "HumanAddr": {
+      "type": "string"
     }
   }
 }

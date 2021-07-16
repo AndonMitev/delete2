@@ -3,12 +3,20 @@
   "title": "CountResponse",
   "type": "object",
   "required": [
-    "count"
+    "buyer",
+    "seller"
   ],
   "properties": {
-    "count": {
-      "type": "integer",
-      "format": "int32"
+    "buyer": {
+      "$ref": "#/definitions/HumanAddr"
+    },
+    "seller": {
+      "$ref": "#/definitions/HumanAddr"
+    }
+  },
+  "definitions": {
+    "HumanAddr": {
+      "type": "string"
     }
   }
 }

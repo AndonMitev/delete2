@@ -3,16 +3,31 @@
   "title": "State",
   "type": "object",
   "required": [
-    "count",
-    "owner"
+    "buyer",
+    "expiration",
+    "secret_hash",
+    "seller",
+    "value"
   ],
   "properties": {
-    "count": {
-      "type": "integer",
-      "format": "int32"
-    },
-    "owner": {
+    "buyer": {
       "$ref": "#/definitions/CanonicalAddr"
+    },
+    "expiration": {
+      "type": "integer",
+      "format": "uint64",
+      "minimum": 0.0
+    },
+    "secret_hash": {
+      "type": "string"
+    },
+    "seller": {
+      "$ref": "#/definitions/CanonicalAddr"
+    },
+    "value": {
+      "type": "integer",
+      "format": "uint64",
+      "minimum": 0.0
     }
   },
   "definitions": {

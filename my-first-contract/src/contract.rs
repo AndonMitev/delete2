@@ -1,5 +1,3 @@
-use crate::msg::{CountResponse, QueryMsg};
-
 use cosmwasm_std::{
     log, to_binary, Api, Binary, Env, Extern, HandleResponse, HumanAddr, InitResponse,
     LogAttribute, Querier, StdError, StdResult, Storage,
@@ -8,7 +6,7 @@ use cosmwasm_std::{
 use hex::decode;
 use sha2::{Digest, Sha256};
 
-use crate::msg::{HandleMsg, InitMsg};
+use crate::msg::{CountResponse, HandleMsg, InitMsg, QueryMsg};
 use crate::state::{balance_get, balance_set, config, config_read, State};
 
 use std::time::{SystemTime, UNIX_EPOCH};
@@ -109,7 +107,13 @@ pub fn query<S: Storage, A: Api, Q: Querier>(
 }
 
 fn query_count<S: Storage, A: Api, Q: Querier>(deps: &Extern<S, A, Q>) -> StdResult<CountResponse> {
+    let mut logs: Vec<LogAttribute> = vec![];
+    logs.push(log("test", "start query"));
     let state = config_read(&deps.storage).load()?;
+    logs.push(log("test", "query"));
+    logs.push(log("state buyer", &state.buyer));
+    logs.push(log("parsed buyer", deps.api.human_address(&state.buyer)?));
+
     let buyer = deps.api.human_address(&state.buyer)?;
     let seller = deps.api.human_address(&state.seller)?;
     Ok(CountResponse {
