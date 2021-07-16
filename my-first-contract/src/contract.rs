@@ -1,9 +1,8 @@
 use crate::msg::{CountResponse, QueryMsg};
-use cosmwasm_std::HumanAddr;
-use cosmwasm_std::Uint128;
+
 use cosmwasm_std::{
-    to_binary, Api, Binary, Env, Extern, HandleResponse, InitResponse, Querier, StdError,
-    StdResult, Storage,
+    log, to_binary, Api, Binary, Env, Extern, HandleResponse, HumanAddr, InitResponse,
+    LogAttribute, Querier, StdError, StdResult, Storage,
 };
 
 use hex::decode;
@@ -17,10 +16,31 @@ use std::time::{SystemTime, UNIX_EPOCH};
 pub fn init<S: Storage, A: Api, Q: Querier>(
     _: &mut Extern<S, A, Q>,
     __: Env,
-    ___: InitMsg,
+    msg: InitMsg,
 ) -> StdResult<InitResponse> {
-    println!("inited");
-    Ok(InitResponse::default())
+    let mut logs: Vec<LogAttribute> = vec![];
+    logs.push(log("test", "test"));
+    logs.push(log("buyer", msg.buyer));
+    logs.push(log("seller", msg.seller));
+    logs.push(log("secret", msg.secret_hash));
+    logs.push(log("value", msg.value));
+    logs.push(log("expiration", msg.expiration));
+
+    let response = InitResponse {
+        messages: vec![],
+        log: logs,
+    };
+
+    // let response = HandleResponse {
+    //     messages: vec![],
+    //     log: vec![
+    //         log("action", "convert"),
+    //         log("swap_type", "direct"),
+    //         log("asset_token", "asd"),
+    //     ],
+    //     data: None,
+    // };
+    Ok(response)
 }
 
 pub fn handle<S: Storage, A: Api, Q: Querier>(
@@ -47,7 +67,7 @@ pub fn try_init<S: Storage, A: Api, Q: Querier>(
     buyer: HumanAddr,
     seller: HumanAddr,
     expiration: u64,
-    value: Uint128,
+    value: u64,
     secret_hash: String,
 ) -> StdResult<HandleResponse> {
     println!("called");
@@ -65,10 +85,12 @@ pub fn try_init<S: Storage, A: Api, Q: Querier>(
     println!("value {}", state.value);
     println!("secret_hash {}", state.secret_hash);
 
+    env.message.sent_funds;
+
     balance_set(
         &mut deps.storage,
         &deps.api.canonical_address(&env.contract.address)?,
-        &value,
+        &0,
     )?;
 
     println!("balance setter");

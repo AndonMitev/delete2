@@ -6,8 +6,8 @@ use serde::{Deserialize, Serialize};
 pub struct InitMsg {
     pub buyer: HumanAddr,
     pub seller: HumanAddr,
-    pub expiration: u128,
-    pub value: Uint128,
+    pub expiration: u64,
+    pub value: u64,
     pub secret_hash: String,
 }
 
@@ -18,7 +18,7 @@ pub enum HandleMsg {
         buyer: HumanAddr,
         seller: HumanAddr,
         expiration: u64,
-        value: Uint128,
+        value: u64,
         secret_hash: String,
     },
     Claim {
