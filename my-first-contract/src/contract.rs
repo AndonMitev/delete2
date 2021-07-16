@@ -16,7 +16,7 @@ pub fn init<S: Storage, A: Api, Q: Querier>(
     deps: &mut Extern<S, A, Q>,
     _: Env,
     msg: InitMsg,
-) -> StdResult<HandleResponse> {
+) -> StdResult<InitResponse> {
     let state = State {
         buyer: deps.api.canonical_address(&msg.buyer)?,
         seller: deps.api.canonical_address(&msg.seller)?,
@@ -27,7 +27,7 @@ pub fn init<S: Storage, A: Api, Q: Querier>(
 
     config(&mut deps.storage).save(&state)?;
 
-    Ok(HandleResponse::default())
+    Ok(InitResponse::default())
 }
 
 pub fn handle<S: Storage, A: Api, Q: Querier>(
