@@ -1,4 +1,5 @@
 use cosmwasm_std::Coin;
+use cosmwasm_std::CosmosMsg;
 use cosmwasm_std::{
     log, to_binary, Api, BankMsg, Binary, Env, Extern, HandleResponse, HumanAddr, InitResponse,
     LogAttribute, Querier, StdError, StdResult, Storage,
@@ -64,13 +65,15 @@ pub fn try_claim<S: Storage, A: Api, Q: Querier>(
 
     let buyer = deps.api.human_address(&state.buyer)?;
 
-    BankMsg::Send {
-        from_address: env.contract.address,
-        to_address: HumanAddr::from(buyer),
-        amount: balances,
-    };
-
-    Ok(HandleResponse::default())
+    Ok(HandleResponse {
+        messages: vec![CosmosMsg::Bank(BankMsg::Send {
+            from_address: env.contract.address,
+            to_address: HumanAddr::from(buyer),
+            amount: balances,
+        })],
+        log: vec![],
+        data: None,
+    })
 }
 
 pub fn try_refund<S: Storage, A: Api, Q: Querier>(
@@ -94,13 +97,15 @@ pub fn try_refund<S: Storage, A: Api, Q: Querier>(
 
     let seller = deps.api.human_address(&state.seller)?;
 
-    BankMsg::Send {
-        from_address: env.contract.address,
-        to_address: HumanAddr::from(seller),
-        amount: balances,
-    };
-
-    Ok(HandleResponse::default())
+    Ok(HandleResponse {
+        messages: vec![CosmosMsg::Bank(BankMsg::Send {
+            from_address: env.contract.address,
+            to_address: HumanAddr::from(seller),
+            amount: balances,
+        })],
+        log: vec![],
+        data: None,
+    })
 }
 
 pub fn query<S: Storage, A: Api, Q: Querier>(
