@@ -1,5 +1,6 @@
+use cosmwasm_std::Coin;
 use cosmwasm_std::{
-    log, to_binary, Api, Binary, Env, Extern, HandleResponse, HumanAddr, InitResponse,
+    log, to_binary, Api, BankMsg, Binary, Env, Extern, HandleResponse, HumanAddr, InitResponse,
     LogAttribute, Querier, StdError, StdResult, Storage,
 };
 
@@ -13,11 +14,9 @@ use std::time::{SystemTime, UNIX_EPOCH};
 
 pub fn init<S: Storage, A: Api, Q: Querier>(
     deps: &mut Extern<S, A, Q>,
-    env: Env,
+    _: Env,
     msg: InitMsg,
-) -> StdResult<InitResponse> {
-    let mut logs: Vec<LogAttribute> = vec![];
-    logs.push(log("test", "testawe brat"));
+) -> StdResult<HandleResponse> {
     let state = State {
         buyer: deps.api.canonical_address(&msg.buyer)?,
         seller: deps.api.canonical_address(&msg.seller)?,
@@ -28,18 +27,7 @@ pub fn init<S: Storage, A: Api, Q: Querier>(
 
     config(&mut deps.storage).save(&state)?;
 
-    // logs.push(log("state buyer", state.buyer));
-    // logs.push(log("state seller", state.seller));
-    // logs.push(log("state expiration", state.expiration));
-    // logs.push(log("state value", state.value));
-    // logs.push(log("state secret", state.secret_hash));
-
-    let response = InitResponse {
-        messages: vec![],
-        log: logs,
-    };
-
-    Ok(response)
+    Ok(HandleResponse::default())
 }
 
 pub fn handle<S: Storage, A: Api, Q: Querier>(
@@ -55,9 +43,10 @@ pub fn handle<S: Storage, A: Api, Q: Querier>(
 
 pub fn try_claim<S: Storage, A: Api, Q: Querier>(
     deps: &mut Extern<S, A, Q>,
-    _: Env,
+    env: Env,
     secret: String,
 ) -> StdResult<HandleResponse> {
+    let mut logs: Vec<LogAttribute> = vec![];
     let state = config_read(&deps.storage).load()?;
 
     let mut hasher = Sha256::default();
@@ -71,30 +60,45 @@ pub fn try_claim<S: Storage, A: Api, Q: Querier>(
         return Err(StdError::generic_err("Invalid secret"));
     }
 
-    // TODO: Transfer locked value to buyer
-    // where this value gonna be locked !?
-    // AND VALIDATIONS ON input secret
+    let balances: Vec<Coin> = deps.querier.query_all_balances(&env.contract.address)?;
+
+    let buyer = deps.api.human_address(&state.buyer)?;
+
+    BankMsg::Send {
+        from_address: env.contract.address,
+        to_address: HumanAddr::from(buyer),
+        amount: balances,
+    };
 
     Ok(HandleResponse::default())
 }
 
 pub fn try_refund<S: Storage, A: Api, Q: Querier>(
     deps: &mut Extern<S, A, Q>,
-    _: Env,
+    env: Env,
 ) -> StdResult<HandleResponse> {
+    let mut logs: Vec<LogAttribute> = vec![];
+
     let state = config_read(&deps.storage).load()?;
 
-    let current_timestamp = SystemTime::now()
-        .duration_since(UNIX_EPOCH)
-        .unwrap()
-        .as_secs();
+    let current_timestamp = env.block.time;
 
-    if current_timestamp < (state.expiration as u64) {
+    logs.push(log("expiration", state.expiration));
+    logs.push(log("current_timestamp", current_timestamp));
+
+    if env.block.time < (state.expiration as u64) {
         return Err(StdError::generic_err("Swap is not expired"));
     }
 
-    // TODO: Transfer locked value to buyer
-    // where this value gonna be locked !?
+    let balances: Vec<Coin> = deps.querier.query_all_balances(&env.contract.address)?;
+
+    let seller = deps.api.human_address(&state.seller)?;
+
+    BankMsg::Send {
+        from_address: env.contract.address,
+        to_address: HumanAddr::from(seller),
+        amount: balances,
+    };
 
     Ok(HandleResponse::default())
 }
